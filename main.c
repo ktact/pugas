@@ -11,27 +11,33 @@ char MAGIC_NUMBER[] = {
   0x46, /* F */
 };
 
-char ELF_CLASS[] = {
+// バイナリのアーキテクチャーを指定する
+char EI_CLASS[] = {
   0x02, /* 1: ELF32, 2: ELF64 */
 };
 
-char ELF_DATA[] = {
+// データエンコーディングを指定する
+char EI_DATA[] = {
   0x01, /* 1: リトルエンディアン, 2: ビッグエンディアン */
 };
 
-char ELF_VERSION[] = {
+// ELF仕様のバージョン番号を指定する
+char EI_VERSION[] = {
   0x01, /* 1: カレントバージョン */
 };
 
-char ELF_OSABI[] = {
+// オブジェクトのターゲットとなるOSとABIを指定する
+char EI_OSABI[] = {
   0x00, /* 0: Linux */
 };
 
-char ELF_ABIVERSION[] = {
+// ABIのバージョンを指定する
+char EI_ABIVERSION[] = {
   0x00,
 };
 
-char EI_PADDING[] = {
+// パディング
+char EI_PAD[] = {
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };
 
@@ -98,13 +104,13 @@ int main() {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
   };
 
-  fwrite(MAGIC_NUMBER,   1, sizeof(MAGIC_NUMBER),   stdout);
-  fwrite(ELF_CLASS,      1, sizeof(ELF_CLASS),      stdout);
-  fwrite(ELF_DATA,       1, sizeof(ELF_DATA),       stdout);
-  fwrite(ELF_VERSION,    1, sizeof(ELF_VERSION),    stdout);
-  fwrite(ELF_OSABI,      1, sizeof(ELF_OSABI),      stdout);
-  fwrite(ELF_ABIVERSION, 1, sizeof(ELF_ABIVERSION), stdout);
-  fwrite(EI_PADDING,     1, sizeof(EI_PADDING),     stdout);
+  fwrite(MAGIC_NUMBER,  1, sizeof(MAGIC_NUMBER),  stdout);
+  fwrite(EI_CLASS,      1, sizeof(EI_CLASS),      stdout);
+  fwrite(EI_DATA,       1, sizeof(EI_DATA),       stdout);
+  fwrite(EI_VERSION,    1, sizeof(EI_VERSION),    stdout);
+  fwrite(EI_OSABI,      1, sizeof(EI_OSABI),      stdout);
+  fwrite(EI_ABIVERSION, 1, sizeof(EI_ABIVERSION), stdout);
+  fwrite(EI_PAD,        1, sizeof(EI_PAD),        stdout);
 
   fwrite(ELF_HEADERS,    1, sizeof(ELF_HEADERS),    stdout);
 
