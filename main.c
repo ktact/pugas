@@ -188,21 +188,23 @@ char SHSTRTAB[] = {
 };
 
 int main() {
-  fwrite(MAGIC_NUMBER,  1, sizeof(MAGIC_NUMBER),  stdout);
-  fwrite(EI_CLASS,      1, sizeof(EI_CLASS),      stdout);
-  fwrite(EI_DATA,       1, sizeof(EI_DATA),       stdout);
-  fwrite(EI_VERSION,    1, sizeof(EI_VERSION),    stdout);
-  fwrite(EI_OSABI,      1, sizeof(EI_OSABI),      stdout);
-  fwrite(EI_ABIVERSION, 1, sizeof(EI_ABIVERSION), stdout);
-  fwrite(EI_PAD,        1, sizeof(EI_PAD),        stdout);
+  // ELFヘッダ出力
+  fwrite(MAGIC_NUMBER,         1, sizeof(MAGIC_NUMBER),         stdout);
+  fwrite(EI_CLASS,             1, sizeof(EI_CLASS),             stdout);
+  fwrite(EI_DATA,              1, sizeof(EI_DATA),              stdout);
+  fwrite(EI_VERSION,           1, sizeof(EI_VERSION),           stdout);
+  fwrite(EI_OSABI,             1, sizeof(EI_OSABI),             stdout);
+  fwrite(EI_ABIVERSION,        1, sizeof(EI_ABIVERSION),        stdout);
+  fwrite(EI_PAD,               1, sizeof(EI_PAD),               stdout);
+  fwrite(ELF_HEADERS,          1, sizeof(ELF_HEADERS),          stdout);
 
-  fwrite(ELF_HEADERS,    1, sizeof(ELF_HEADERS),    stdout);
+  // セクション出力
+  fwrite(TEXT,                 1, sizeof(TEXT),                 stdout);
+  fwrite(SYMTAB,               1, sizeof(SYMTAB),               stdout);
+  fwrite(STRTAB,               1, sizeof(STRTAB),               stdout);
+  fwrite(SHSTRTAB,             1, sizeof(SHSTRTAB),             stdout);
 
-  fwrite(TEXT,     1, sizeof(TEXT),     stdout);
-  fwrite(SYMTAB,   1, sizeof(SYMTAB),   stdout);
-  fwrite(STRTAB,   1, sizeof(STRTAB),   stdout);
-  fwrite(SHSTRTAB, 1, sizeof(SHSTRTAB), stdout);
-
+  // セクション・ヘッダー・テーブル出力
   fwrite(SECTION_HEADER_TABLE, 1, sizeof(SECTION_HEADER_TABLE), stdout);
 
   return 0;
