@@ -64,7 +64,7 @@ char ELF_HEADERS[] = {
  * セクション・ヘッダー・テーブル
  */
 char SECTION_HEADER_TABLE[] = {
-  // SHT_NULL
+  // SHT_NULL: このセクションヘッダーに関連付けられたセクションは存在しない(フィールドの値は不定)
   0x00, 0x00, 0x00, 0x00,                         // sh_name
   0x00, 0x00, 0x00, 0x00,                         // sh_type
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // sh_flags
